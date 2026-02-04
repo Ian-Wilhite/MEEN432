@@ -1,0 +1,64 @@
+\documentclass[english]{article}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{patterns,decorations.pathmorphing}
+
+\begin{document}
+\title{MEEN 432 Project 1 S1}
+\author{Team 4: Dalys Guajardo, Juan Lopez, and Ian Wilhite}
+\date{\today}
+\maketitle
+
+\section{Plot 1: Max Simulation Error vs Time Step}
+Max simulation Error vs time step, for the different fixed time step Integration methods.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../assets/plot1_error_vs_timestep.png}
+    \caption{Maximum simulation error versus time step for fixed time step integration methods.}
+\end{figure}
+
+\newpage
+\section{Plot 2: CPU Time vs Time Step}
+CPU Time taken vs time step, for the different fixed time step integration method.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../assets/plot2_cputime_vs_timestep.png}
+    \caption{CPU time versus time step for fixed time step integration methods.}
+\end{figure}
+
+\newpage
+\section{Plot 3: Max Simulation Error vs CPU Time}
+Max simulation Error vs CPU Time taken for the simulation, for each of the different integration methods (both fixed time step and variable time step).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../assets/plot3_error_vs_cputime.png}
+    \caption{Maximum simulation error versus CPU time for all integration methods.}
+\end{figure}
+
+\newpage
+\section{Plot 4: Contour Plot - System Eigenvalues}
+Contour plots of constant system eigen values with Max Sim Error on y axis and CPU time on x axis.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../assets/plot4_contour_eigenvalue.png}
+    \caption{Contour plot showing system eigenvalues (-b/J) with error and CPU time.}
+\end{figure}
+
+\newpage
+\section{Plot 5: Contour Plot - Input Frequencies}
+Contour plots of constant input frequencies with Max Sim Error on y axis and CPU time on x axis.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../assets/plot5_contour_frequency.png}
+    \caption{Contour plot showing input frequencies with error and CPU time for sinusoidal cases.}
+\end{figure}
+
+\end{document}
