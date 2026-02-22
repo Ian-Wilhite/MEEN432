@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\title{MEEN 432 Project 2 --- Week 1 Progress Report}
+\author{Team 4: Dalys Guajardo, Juan Lopez, and Ian Wilhite}
+\date{February 14, 2026}
+\begin{document}
+\maketitle
+
+\section{Track Generation}
+The oval track is built in \texttt{gentrack.m} as a single continuous loop starting and ending at the origin.
+Rather than stitching semicircles onto straight segments, the script walks a counter forward by a fixed arc-length step $\Delta s \approx 10$\,m and decides at each point whether to advance linearly (straights) or rotate incrementally by $\Delta\theta = \Delta s / R$ about the appropriate curve center (curves).
+This produces the centerline waypoints \texttt{path.xpath}, \texttt{path.ypath}, plus inner/outer borders offset by $\pm 7.5$\,m (half the 15\,m track width).
+Track parameters: two 900\,m straights, two semicircles of radius $R = 200$\,m, total length $\approx 3057$\,m.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/track_overview.png}
+  \caption{Oval track centerline (dashed) with inner/outer borders. The track starts and ends at $(0,0)$.}
+\end{figure}
+
+\section{Vehicle Dynamics (Simulink)}
+The Simulink model \texttt{Project\_2\_Kinematic\_Model.slx} implements a lateral bicycle model in four subsystems:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Tire Slip} --- computes front and rear slip angles from lateral velocity $v_y$, yaw rate $\omega$, and steering angle $\delta_f$:
+  \[
+    \alpha_f = \delta_f - \frac{v_y + \omega\, l_f}{v_x}, \qquad
+    \alpha_r = -\frac{v_y - \omega\, l_r}{v_x}
+  \]
+  \item \textbf{Tire Forces} --- linear cornering-stiffness model $F_y = C_\alpha \,\alpha$ clamped to $\pm F_{y,\max}$.
+  \item \textbf{Lateral Dynamics} --- Newton/Euler equations for the body frame:
+  \[
+    a_y = -v_x\,\omega + \frac{F_{yf}+F_{yr}}{m}, \qquad
+    \dot\omega = \frac{F_{yf}\,l_f - F_{yr}\,l_r}{I_{zz}}
+  \]
+  \item \textbf{Body$\to$Inertial Transform} --- rotates $(v_x, v_y)$ by heading $\psi$ and integrates to get world-frame $X$, $Y$.
+\end{enumerate}
+A PID-based \textbf{Driver} MATLAB Function computes $\delta_f$ from heading error and feedforward curvature, and feeds the desired longitudinal speed $v_{xd}$.
+At this stage the car launches at $v_{x0}=0.1$\,m/s toward $v_{xd}=100$\,m/s and leaves the track on the first curve; tuning the gains and speed target is Week~2 work.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/vehicle_poses.png}
+  \caption{Sample rectangular vehicle poses (15\,m $\times$ 5\,m) along the centerline, rotated by local heading $\psi$.}
+\end{figure}
+
+\section{Changes from Starter Code}
+\begin{itemize}[nosep]
+  \item \texttt{gentrack.m}: added \texttt{assignin('base','path',path)} so the \texttt{path} struct is available to Simulink and post-processing scripts.
+  \item \texttt{animate.m}: added \texttt{try/catch} around \texttt{sim()}, a \texttt{getSimSignal} helper for flexible signal access, validation that \texttt{X}/\texttt{Y}/\texttt{psi} exist, and a green motion trail via \texttt{animatedline}.
+  \item \texttt{raceStat.m}: extracted from \texttt{animate.m} into its own file; fixed the broken \texttt{fprintf} format specifier (\texttt{\%} $\to$ \texttt{\%d}), added per-lap timing output, and returned a full stats struct.
+  \item \texttt{run.m}: added a check that the \texttt{.slx} file exists and wrapped \texttt{animate} in \texttt{try/catch} with a descriptive error message.
+  \item Simulink model: wired the Driver, Tire Slip, Tire Forces, Lateral Dynamics, and Body$\to$Inertial subsystems; added \texttt{To Workspace} blocks for \texttt{X}, \texttt{Y}, \texttt{psi}; connected the feedback loop from $X$, $Y$, $\psi$, $\omega$ back to the Driver.
+\end{itemize}
+
+
+\end{document}

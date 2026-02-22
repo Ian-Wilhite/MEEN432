@@ -37,7 +37,7 @@ carData.understeerCoeff = ... % Understeering Coefficient
 carData.maxAlpha = 4 / 180 * pi; % Max Alpha Angle for Tires
 
 
-carData.vxd = 25.; % m/s - Desired Velocity in X
+carData.vxd = 100.; % m/s - Desired Velocity in X
 carData.vx_threshold1 = 0.1; % m/s - Threshold for Velocity in X
 
 
