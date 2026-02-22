@@ -1,1 +1,9 @@
 ./references/*
+
+# MATLAB/Simulink generated metadata
+**/slprj/
+**/sfprj/
+**/codegen/
+**/work/
+*.slxc
+*.mex*
