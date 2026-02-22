@@ -1,0 +1,3 @@
+Typo in parameter file
+
+There was a typo in the parameter file the front and rear tire coefficients should be 40,000 N/rad.  400 will make your car slide at a very low velocity.

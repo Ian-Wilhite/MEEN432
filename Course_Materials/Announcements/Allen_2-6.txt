@@ -1,0 +1,25 @@
+Dear Students,
+
+This is your TA, Allen. Thank you for your efforts on Project 1. After grading your submissions, I thought it would be helpful to share some general guidelines. Below are a few to start with, and I may add more later in the semester.
+
+1) Please have only one submission per group. This submission must be from the team lead. Have all your files within a single zip file. The zip file name must include the project number, submission number, and group number. For example, "P1S1G1".
+
+2) All students submit their peer reviews individually on Canvas. The team lead submits their peer review separately, outside the project ZIP file. The peer review file must have project, submission and group number, as well as the student's name. For example, "P1S1G1MyNamePeerReview".
+
+3) Each submission must have the necessary matlab/simulink files, as well as a readme and a report. The readme and report must be separate. Name all files appropriately so it is easy to understand which file does what.
+
+4) The readme file must have clean instructions on what files to open/run and in what order. These instructions must be placed at the very beginning of the file, before the rest of the info that explains what each file does.
+
+5) MATLAB scripts can sometimes be lengthy and difficult to read. Be sure to include sufficient comments, and also save a Live Script version (.mlx) of your .m file. Live Scripts break long programs into smaller sections and display outputs inline when run (similar to a Python notebook). After running the .mlx file, you can export the code and outputs as a .pdf file. Here's some info on live scripts https://www.mathworks.com/help/matlab/matlab_prog/create-live-scripts.html  Links to an external site.
+
+6)  When creating Simulink models, group smaller blocks into larger blocks (subsystems), as demonstrated in class, rather than using many elementary blocks with numerous interconnections. For example, in Project 1, you should create a block representing a shaft, which can then be reused within a larger model. In general, aim to modularize your design.
+
+7) The report must be written in a way that the reader can understand what you did, what results you got, and what you understood from the results, without having to look through your code or output figures. This includes having pictures of some of the simulink models, and their explanation to convey your modeling approach, and having tables/figures and their explanations for your results section. You do not have to add all figures if there are many, or write a lot, just enough to communicate your project.
+
+8) Every plot must have a title, axes labels and legends to convey what the plots mean, and what parameters/solver etc. was used for that specific plot. If you end up with a lot of plots, one way to neatly present them is by breaking them based on some shared attributes, into a few figures that hold several of the plots together. You can use something like matlab subplots for example https://www.mathworks.com/help/matlab/ref/subplot.html Links to an external site.
+
+Note that the guidelines are relatively easy to follow with minimal additional work. The goal is not to push more work on you all, but rather have the presented work be more organized and accessible to others. I really appreciate your patience and hard work.
+
+Best Regards,
+
+Allen

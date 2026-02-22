@@ -1,0 +1,5 @@
+Resource for vehicle modeling
+
+Here is the link for the vehicle modeling resources that I will be discussing in class today.
+
+https://github.com/mathworks/EV-with-MATLAB-and-Simulink/tree/main?tab=readme-ov-file 

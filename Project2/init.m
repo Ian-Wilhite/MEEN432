@@ -20,8 +20,8 @@ carData.init.psi0 = 0;      % rad - Initial Heading of the Car
 % Vehicle Tire Information 
 carData.Calpha_f = 40000; % N/rad - Front Tire Coefficient (slope)
 carData.Calpha_r = 40000; % N/rad - Rear Tire Coefficient (slope)
-carData.Fyfmax = 40000*1/180*pi; % N - Max Front Tire Force
-carData.Fyrmax = 40000*1/180*pi; % N - Max Rear Tire Force
+carData.Fyfmax = 40000*4/180*pi; % N - Max Front Tire Force (at maxAlpha = 4 deg)
+carData.Fyrmax = 40000*4/180*pi; % N - Max Rear Tire Force (at maxAlpha = 4 deg)
 carData.lr = 1.5; % m - Distance from CG to rear axis
 carData.lf = 1.0; % m - Distance from CG to front axis
 carData.radius = 0.3; % m - Radius of tires
@@ -37,7 +37,7 @@ carData.understeerCoeff = ... % Understeering Coefficient
 carData.maxAlpha = 4 / 180 * pi; % Max Alpha Angle for Tires
 
 
-carData.vxd = 25.; % m/s - Desired Velocity in X
+carData.vxd = 15.; % m/s - Desired Velocity in X
 carData.vx_threshold1 = 0.1; % m/s - Threshold for Velocity in X
 
 
