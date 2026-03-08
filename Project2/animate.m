@@ -63,14 +63,21 @@ race = raceStat(car_X, car_Y, car_time, path); %#ok<NASGU>
 hold off;
 
 function sig = getSimSignal(simout,name)
+    % Try direct property first (To Workspace block named 'X', 'Y', etc.)
     if isprop(simout,name)
         data = simout.(name);
-        if isprop(data,"Data")
-            sig = data.Data;
-        else
-            sig = data;
-        end
+    % Also handle blocks named 'out.X', 'out.Y', 'out.psi'
+    elseif isprop(simout,'out') && isfield(simout.out, name)
+        data = simout.out.(name);
     else
         sig = [];
+        return;
+    end
+    if isobject(data) && isprop(data,'Data')
+        sig = data.Data;
+    elseif isstruct(data) && isfield(data,'Data')
+        sig = data.Data;
+    else
+        sig = data;
     end
 end

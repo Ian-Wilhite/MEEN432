@@ -122,6 +122,13 @@ path.youtpath(1) = -7.5; % initializing where outside border starts
 end
 % Make track struct available to Simulink blocks and post-processing
 assignin('base','path',path);
+
+% Also export a 'track' struct with the field names expected by the
+% provided raceStat.m (track.radius, track.width, track.l_straightaways)
+track.radius         = path.radius;
+track.width          = path.width;
+track.l_straightaways = path.l_st;
+assignin('base','track',track);
 function v_rot = rotate(v, theta)
     % Rotate 2D vector v by angle theta (radians)
     R = [cos(theta), -sin(theta);
