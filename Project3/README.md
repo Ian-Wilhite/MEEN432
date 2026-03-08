@@ -1,0 +1,5 @@
+# Project 3 – Week 1
+
+A simple driver model was developed in Simulink to track EPA drive cycles using a longitudinal vehicle dynamics model. The model consists of three main subsystems: Drive Schedule, Throttle and Braking Logic, and Longitudinal Dynamics Body Frame. The Drive Schedule subsystem generates the desired vehicle speed using EPA drive cycle data and converts it from mph to m/s. The driver controller compares the desired speed to the actual vehicle speed and applies either accelerator pedal position (APP) or brake pedal position (BPP) based on the speed error. The vehicle dynamics subsystem models the longitudinal motion of the vehicle using drive force, brake force, and resistive drag forces.
+
+To run the simulation, first execute `p3_init.m` to initialize vehicle parameters. Next load a drive cycle using `urbandrivinginit.m` or `fueleconomyinit.m`. Finally run `p3_runsim.m` to simulate the vehicle and generate the velocity tracking plot. The model meets the requirement of maintaining vehicle speed within the ±3 mph error band of the EPA drive cycle.
