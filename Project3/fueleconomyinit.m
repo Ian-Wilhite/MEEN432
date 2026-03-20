@@ -767,4 +767,5 @@ DriveData = [
 0
 ];
 Time = (0:1:765)';
+cycleName = "fueleconomy";
 

@@ -1,5 +1,22 @@
 # Project 3 – Week 1
 
-A simple driver model was developed in Simulink to track EPA drive cycles using a longitudinal vehicle dynamics model. The model consists of three main subsystems: Drive Schedule, Throttle and Braking Logic, and Longitudinal Dynamics Body Frame. The Drive Schedule subsystem generates the desired vehicle speed using EPA drive cycle data and converts it from mph to m/s. The driver controller compares the desired speed to the actual vehicle speed and applies either accelerator pedal position (APP) or brake pedal position (BPP) based on the speed error. The vehicle dynamics subsystem models the longitudinal motion of the vehicle using drive force, brake force, and resistive drag forces.
+## Summary:
 
-To run the simulation, first execute `p3_init.m` to initialize vehicle parameters. Next load a drive cycle using `urbandrivinginit.m` or `fueleconomyinit.m`. Finally run `p3_runsim.m` to simulate the vehicle and generate the velocity tracking plot. The model meets the requirement of maintaining vehicle speed within the ±3 mph error band of the EPA drive cycle.
+A longitudinal vehicle dynamics model with a simple driver was built in Simulink to follow EPA drive cycles while staying inside a ±3 mph error band. The model has three key parts: 
+1) Drive Schedule converts EPA cycle data (mph to m/s)
+2) Throttle/Brake Logic compares desired vs. actual speed and commands APP or BPP
+3) Longitudinal Dynamics computes motion from drive force, brake force, and aerodynamic/rolling drag.
+
+## Run steps:
+
+1) `p3_init.m` to load vehicle parameters.
+2) Select a cycle: `urbandrivinginit.m` (urban) or `fueleconomyinit.m` (highway). Each script defines `DriveData`, `Time`, and `cycleName`.
+3) `p3_runsim.m` runs the Simulink model, prints the maximum absolute speed error, and saves `Plots/<cycleName>_plot.pdf` with the drive-cycle overlay and ±3 mph band.
+
+Both urban and highway simulations hold max error below 3 mph when using the provided controller gains and vehicle parameters.
+
+## Figures:
+Highway velocity vs time:
+![](./assets/fueleconomy_plot.png)
+Urban velocity vs time:
+![](./assets/urban_driving_plot.png)

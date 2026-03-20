@@ -766,4 +766,5 @@ DriveData = [
 0
 0];
 Time = (0:1:765)';
+cycleName = "highway_drive";
 

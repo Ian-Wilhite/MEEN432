@@ -1371,4 +1371,5 @@ DriveData = [
 0
 ];
 Time = (0:1:1369)';
+cycleName = "urban_driving";
 
