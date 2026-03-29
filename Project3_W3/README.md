@@ -57,6 +57,24 @@ SOC drop: 3.05%
 
 
 
+\## Figures:
+
+\*\*Urban Cycle:\*\*
+
+![Battery Power vs Time](Week3Plots_Urban_Driving/Battery_Power_vs_Time_Urbandriving.png)
+![Net Battery Energy vs Time](Week3Plots_Urban_Driving/Net_Battery_Energy_vs_Time_Urbandriving.png)
+![Battery State of Charge](Week3Plots_Urban_Driving/Battery_State_of_Charge_Urbandriving.png)
+![Simulated Vehicle Velocity vs Time](Week3Plots_Urban_Driving/Simulated_Vehicle_Velocity_vs_Time_Urbandriving.png)
+
+\*\*Fuel Economy Cycle:\*\*
+
+![Battery Power vs Time](Week3Plots_Fuel_Economy/Battery_Power_vs_Time_Fuel_Economy.png)
+![Net Battery Energy vs Time](Week3Plots_Fuel_Economy/Net_Battery_Energy_vs_Time_Fuel_Economy.png)
+![Battery State of Charge](Week3Plots_Fuel_Economy/Battery_State_of_Charge_Fuel_Economy.png)
+![Simulated Vehicle Velocity vs Time](Week3Plots_Fuel_Economy/Simulated_Vehicle_Velocity_vs_Time_Fuel_Economy.png)
+
+
+
 \## Observations:
 
 
