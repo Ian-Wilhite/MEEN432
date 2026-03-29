@@ -1,6 +1,6 @@
-\# Project 3 – Week 3
+# Project 3 – Week 3
 
-\## Summary:
+## Summary:
 
 The longitudinal vehicle model was extended to include a battery model and regenerative braking while maintaining ±3 mph tracking of EPA drive cycles. The system includes a Drive Schedule, Throttle/Braking Logic, and an updated Longitudinal Dynamics subsystem that computes vehicle motion, motor behavior, battery power, and state of charge (SOC).
 
@@ -8,28 +8,28 @@ The longitudinal vehicle model was extended to include a battery model and regen
 
 Battery power is calculated from motor mechanical power, with positive values representing energy consumption and negative values representing regenerative braking. Energy usage is obtained by integrating battery power, while SOC is updated dynamically based on battery current.
 
-\## Run Instructions:
+## Run Instructions:
 
 ```matlab
 
-p3\_init
+p3_init
 
 urbandrivinginit      % or fueleconomyinit
 
-p3\_runsim
+p3_runsim
 
 ```
 
-The script simulates `p3\_car.slx`, verifies ±3 mph tracking, computes energy metrics, and generates four plots saved to `Week3Plots\_Fuel\_Economy/` or `Week3Plots\_Urban\_Driving/`:
+The script simulates `p3_car.slx`, verifies ±3 mph tracking, computes energy metrics, and generates four plots saved to `Week3Plots_Fuel_Economy/` or `Week3Plots_Urban_Driving/`:
 
 - **Battery Power vs Time** – instantaneous battery power (positive = draw, negative = regen)
 - **Net Battery Energy vs Time** – cumulative net energy from battery over the cycle
 - **Battery State of Charge** – SOC evolution throughout the drive cycle *(new this week)*
 - **Simulated Vehicle Velocity vs Time** – simulated vs. drive cycle reference with ±3 mph band
 
-\## Results:
+## Results:
 
-\*\*Urban Cycle:\*\*
+**Urban Cycle:**
 
 Max error: 0.77 mph
 
@@ -43,7 +43,7 @@ SOC drop: 1.50%
 
 
 
-\*\*Fuel Economy Cycle:\*\*
+**Fuel Economy Cycle:**
 
 Max error: 0.72 mph
 
@@ -57,16 +57,16 @@ SOC drop: 3.05%
 
 
 
-\## Figures:
+## Figures:
 
-\*\*Urban Cycle:\*\*
+**Urban Cycle:**
 
 ![Battery Power vs Time](Week3Plots_Urban_Driving/Battery_Power_vs_Time_Urbandriving.png)
 ![Net Battery Energy vs Time](Week3Plots_Urban_Driving/Net_Battery_Energy_vs_Time_Urbandriving.png)
 ![Battery State of Charge](Week3Plots_Urban_Driving/Battery_State_of_Charge_Urbandriving.png)
 ![Simulated Vehicle Velocity vs Time](Week3Plots_Urban_Driving/Simulated_Vehicle_Velocity_vs_Time_Urbandriving.png)
 
-\*\*Fuel Economy Cycle:\*\*
+**Fuel Economy Cycle:**
 
 ![Battery Power vs Time](Week3Plots_Fuel_Economy/Battery_Power_vs_Time_Fuel_Economy.png)
 ![Net Battery Energy vs Time](Week3Plots_Fuel_Economy/Net_Battery_Energy_vs_Time_Fuel_Economy.png)
@@ -75,7 +75,7 @@ SOC drop: 3.05%
 
 
 
-\## Observations:
+## Observations:
 
 
 
@@ -87,7 +87,7 @@ The higher energy usage in the fuel economy cycle is attributed to sustained hig
 
 
 
-\## Conclusion:
+## Conclusion:
 
 
 
