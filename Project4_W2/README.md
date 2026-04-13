@@ -1,4 +1,4 @@
-# Project 4 (Team) – Week 1
+# Project 4 (Team) – Week 2
 
 
 In Project 4, we combined lateral and longitudinal dynamics with an electric powertrain model to simulate a vehicle completing laps around a track. The objective for Week 2 was to maximize the number of laps completed in a 60-minute simulation while satisfying all project constraints.
@@ -28,17 +28,18 @@ p4_runsim      % run simulation and generate plots
 
 | Parameter             | Value             |
 | --------------------- | ----------------- |
-| Simulation time       | 3600 s (60 min)   |
-| Target speed          | 20 mph (8.94 m/s) |
-| Lookahead distance    | 7 m               |
-| Laps completed        | 10.43             |
-| Track length          | 3057 m/lap        |
-| Initial SOC           | 80.00%            |
-| Final SOC             | 78.85%            |
-| SOC drop              | 1.15%             |
-| Max cross-track error | 7.27 m            |
-| Track limit           | ±7.50 m           |
-| Week 2 valid          | YES               |
+| Simulation time       | 3600 s (60 min)                    |
+| Target speed          | 20 mph (8.94 m/s)                  |
+| Lookahead distance    | 7 m                                |
+| Gearbox               | 3-speed (ratios: 10.0 / 3.0 / 1.0) |
+| Laps completed        | 10.43                              |
+| Track length          | 3057 m/lap                         |
+| Initial SOC           | 80.00%                             |
+| Final SOC             | 78.85%                             |
+| SOC drop              | 1.15%                              |
+| Max cross-track error | 7.27 m                             |
+| Track limit           | ±7.50 m                            |
+| Week 2 valid          | YES                                |
 
 
 ---
@@ -47,31 +48,31 @@ p4_runsim      % run simulation and generate plots
 
 ### Fig 1 — Lap 1 Trajectory
 
-![Lap 1 Path](figures/fig1_lap1_path.png)
+![Lap 1 Path](P4W2_Graphs/fig1_lap1_path.png)
 
 ### Fig 2 — Full Run Trajectory (All Laps, coloured by time)
 
-![All Laps Path](figures/fig2_all_laps_path.png)
+![All Laps Path](P4W2_Graphs/fig2_all_laps_path.png)
 
 ### Fig 3 — Vehicle Speed vs Time (Full Run)
 
-![Speed vs Time](figures/fig3_speed.png)
+![Speed vs Time](P4W2_Graphs/fig3_speed.png)
 
 ### Fig 3b — Vehicle Speed vs Time (First 250 s)
 
-![Speed vs Time Zoom](figures/fig3b_speed_zoom.png)
+![Speed vs Time Zoom](P4W2_Graphs/fig3b_speed_zoom.png)
 
 ### Fig 4 — Battery SOC vs Time
 
-![Battery SOC](figures/fig4_soc.png)
+![Battery SOC](P4W2_Graphs/fig4_soc.png)
 
 ### Fig 5 — Lateral Position vs Lap Position (Cross-Track Error)
 
-![Lateral Laps](figures/fig5_lateral_laps.png)
+![Lateral Laps](P4W2_Graphs/fig5_lateral_laps.png)
 
 ### Animation
 
-![Track Animation](figures/animation.gif)
+![Track Animation](P4W2_Graphs/animation.gif)
 
 ---
 
