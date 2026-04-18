@@ -1,0 +1,93 @@
+%% p4_runsim.m
+% run script for P4
+% runs P4 model
+
+clc; clear; clf;
+
+% Initialize everything
+p4_init;    % sets up carData, datCar, datBat, datMotor, path, track, sim_stop_time
+
+% Run the P4 model
+fprintf('\nRunning p4_model.slx ...\n');
+simout = sim('p4_model.slx', 'StopTime', num2str(sim_stop_time));
+fprintf('Simulation complete.\n\n');
+
+% Results
+t   = simout.tout;
+
+% Position (from CarBodyFrame2InertialFrame ToWorkspace blocks)
+X_ts = simout.X;   Y_ts = simout.Y;
+if isa(X_ts,'timeseries')
+    X = X_ts.Data;  Y = Y_ts.Data;
+else
+    X = X_ts;       Y = Y_ts;
+end
+
+% Velocity & SOC from longitudinal model
+vx_ts  = simout.vx_out;
+soc_ts = simout.soc_out;
+if isa(vx_ts,'timeseries')
+    vx  = vx_ts.Data;
+    soc = soc_ts.Data;
+else
+    vx  = vx_ts;
+    soc = soc_ts;
+end
+
+% Lap Count
+% crossing x=0 and y=0
+lap_count = compute_laps(X, Y, path);
+fprintf('Laps completed : %.2f\n', lap_count);
+
+%------ Car on track ------%
+figure(1); clf;
+plot(path.xpath,   path.ypath,   'k-',  'LineWidth', 1.5); hold on;
+plot(path.xinpath, path.yinpath, 'b--', 'LineWidth', 1);
+plot(path.xoutpath,path.youtpath,'r--', 'LineWidth', 1);
+plot(X, Y, 'm-', 'LineWidth', 2);
+legend('Track Centre','Inner Edge','Outer Edge','Vehicle Path','Location','best');
+xlabel('X (m)'); ylabel('Y (m)');
+title('Project 4 – Vehicle Trajectory (Week 1)');
+axis equal; grid on;
+
+%------ Longitudinal velocity ------%
+figure(2); clf;
+plot(t, vx*2.23694, 'b-', 'LineWidth', 1.5);  % m/s → mph
+yline(carData.vxd*2.23694, 'r--', 'Desired', 'LineWidth', 1.2);
+xlabel('Time (s)'); ylabel('Speed (mph)');
+title('Vehicle Speed vs Time');
+grid on; legend('Actual Speed','Desired Speed');
+
+%------ Battery SOC ------%
+figure(3); clf;
+plot(t, soc*100, 'g-', 'LineWidth', 1.5);
+yline(10, 'r--', 'Min 10%', 'LineWidth', 1.2);
+yline(95, 'b--', 'Max 95%', 'LineWidth', 1.2);
+xlabel('Time (s)'); ylabel('State of Charge (%)');
+title('Battery SOC vs Time');
+ylim([0 100]); grid on;
+
+% ========================================================
+function laps = compute_laps(X, Y, path)
+% Estimate lap fraction based on arc-length along the track centerline
+    cx = path.xpath;  cy = path.ypath;
+    % Project each vehicle point onto the closest track point
+    nv = length(X);
+    arc = zeros(nv,1);
+    ds = sqrt(diff(cx).^2 + diff(cy).^2);
+    cumS = [0; cumsum(ds)];
+    L = cumS(end);   % total track length
+    
+    for i = 1:nv
+        d2 = (cx - X(i)).^2 + (cy - Y(i)).^2;
+        [~,idx] = min(d2);
+        arc(i) = cumS(idx);
+    end
+    
+    % Count crossings of the start/finish (cumulative arc-length multiples)
+    delta_arc = diff(arc);
+    % Handle wrap-around (going past finish line)
+    delta_arc(delta_arc < -L/2) = delta_arc(delta_arc < -L/2) + L;
+    total_arc = sum(delta_arc(delta_arc > 0));
+    laps = total_arc / L;
+end

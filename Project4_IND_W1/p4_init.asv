@@ -1,0 +1,62 @@
+%% p4_init.m
+% Combined Initialization Script for Project 4
+% Merges lateral (Project 2) and longitudinal (Project 3) parameters
+% into a single consistent workspace for p4_combined.slx
+
+clc;
+
+% ======== Longitudinal Paramters (P3) ==========%
+VehicleInit;        % loads datCar struct
+BatteryInit;        % loads datBat struct  (SOC_init = 0.80 set below)
+ElectricMotorInit;  % loads datMotor struct
+
+% Initial Battery SOC 80%
+datBat.SOC_init = 0.80;
+
+% ======== Lateral Paramters (P2) ==========%
+%Getting Car Data/Chatacteristics
+carData.Inertia   = datCar.I; % kg·m^2
+carData.Mass      = datCar.m; % kg
+
+% Initial conditions
+carData.init.X0     = datCar.init.X0; % m
+carData.init.Y0     = datCar.init.Y0; % m
+carData.init.vx0    = datCar.init.vx0; % m/s  (small positive so no /0)
+carData.init.vy0    = datCar.init.vy0; % m/s
+carData.init.omega0 = datCar.init.omega0; % rad/s
+carData.init.psi0   = datCar.init.psi0; % rad
+
+% Tire parameters
+carData.Calpha_f = datCar.Calpha_f;
+carData.Calpha_r = datCar.Calpha_r;
+carData.Fyfmax   = datCar.Fyfmax;
+carData.Fyrmax   = datCar.Fyrmax;
+carData.lr       = datCar.lr;
+carData.lf       = datCar.lf;
+carData.radius   = datCar.radius;
+carData.maxAlpha = datCar.maxAlpha;
+
+% Rough Desired velocity
+carData.vxd = 15.0;  % from P2
+carData.vx_threshold1 = 0.1;
+
+% Create the Simulink Bus object that the Constant block needs
+carDataBus = Simulink.Bus.createObject(carData);
+
+
+% ======Generate Track=========%
+gentrack;   % creates 'path' and 'track' structs in base workspace
+
+%% =========================================================
+%  SIMULATION SETTINGS
+% ==========================================================
+% One lap ≈ 2*900 + 2*pi*200 ≈ 3057 m
+% At 15 m/s average ≈ 204 s.  Use 300 s to give plenty of margin.
+sim_stop_time = 300;   % seconds (change to 3600 for full 1-hr run later)
+
+fprintf('=== Project 4 Initialization Complete ===\n');
+fprintf('  Vehicle mass  : %.0f kg\n', datCar.m);
+fprintf('  Battery SOC0  : %.0f%%\n',  datBat.SOC_init*100);
+fprintf('  Desired speed : %.1f m/s (%.1f mph)\n', carData.vxd, carData.vxd/0.44704);
+fprintf('  Track length  : %.0f m per lap\n', path.total_length);
+fprintf('  Stop time     : %.0f s\n', sim_stop_time);
