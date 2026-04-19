@@ -1,5 +1,5 @@
 %% p4_runsim.m
-% Project 4 Week 2 run script
+% Project 4 Individual – Week 1 run script
 % Runs the P4 model for the full 60-minute event and checks deliverable constraints.
 
 clc; clear; clf;
@@ -7,7 +7,7 @@ clc; clear; clf;
 % Initialize model/workspace
 p4_init;
 
-fprintf('\nRunning p4_model.slx for Week 2...\n');
+fprintf('\nRunning p4_model.slx...\n');
 simout = sim('p4_model.slx', 'StopTime', num2str(sim_stop_time));
 fprintf('Simulation complete.\n\n');
 
@@ -47,7 +47,7 @@ t   = t(:);
 % -----------------------
 results = evaluate_week2_run(X, Y, vx, soc, path);
 
-fprintf('========== WEEK 2 SUMMARY ==========\n');
+fprintf('======= P4 INDIVIDUAL SUMMARY =======\n');
 fprintf('Target speed                : %.1f mph\n', carData.vxd_mph);
 fprintf('Lookahead distance          : %.1f m\n', path.pure_pursuit_lookaheaddist);
 fprintf('Simulation time             : %.1f s\n', t(end));
@@ -63,8 +63,8 @@ fprintf('Track half-width            : %.2f m\n', path.width/2);
 fprintf('Stayed on track?            : %s\n', tf2str(results.on_track));
 fprintf('SOC stayed within 10-95%%?   : %s\n', tf2str(results.soc_ok));
 fprintf('Reached at least 5 laps?    : %s\n', tf2str(results.five_laps_ok));
-fprintf('Overall Week 2 valid?       : %s\n', tf2str(results.week2_valid));
-fprintf('====================================\n');
+fprintf('Overall valid?              : %s\n', tf2str(results.week2_valid));
+fprintf('=====================================\n');
 
 % -----------------------
 % Plots
@@ -76,14 +76,14 @@ plot(path.xoutpath, path.youtpath, 'r--', 'LineWidth', 1.0);
 plot(X, Y, 'm-', 'LineWidth', 1.5);
 legend('Track Centre','Inner Edge','Outer Edge','Vehicle Path','Location','best');
 xlabel('X (m)'); ylabel('Y (m)');
-title('Project 4 Week 2 - Full Vehicle Trajectory');
+title('Project 4 Individual – Full Vehicle Trajectory');
 axis equal; grid on;
 
 figure(2); clf;
 plot(t, vx*2.23694, 'b-', 'LineWidth', 1.5); hold on;
 yline(carData.vxd_mph, 'r--', 'Desired Speed', 'LineWidth', 1.2);
 xlabel('Time (s)'); ylabel('Speed (mph)');
-title('Project 4 Week 2 - Vehicle Speed vs Time');
+title('Project 4 Individual – Vehicle Speed vs Time');
 grid on; legend('Actual Speed','Desired Speed','Location','best');
 
 figure(3); clf;
@@ -91,7 +91,7 @@ plot(t, soc*100, 'g-', 'LineWidth', 1.5); hold on;
 yline(10, 'r--', 'Min 10%', 'LineWidth', 1.2);
 yline(95, 'b--', 'Max 95%', 'LineWidth', 1.2);
 xlabel('Time (s)'); ylabel('State of Charge (%)');
-title('Project 4 Week 2 - Battery SOC vs Time');
+title('Project 4 Individual – Battery SOC vs Time');
 ylim([0 100]); grid on;
 
 figure(4); clf;
@@ -99,7 +99,7 @@ plot(t, results.cte, 'k-', 'LineWidth', 1.2); hold on;
 yline(path.width/2, 'r--', 'Track Limit', 'LineWidth', 1.2);
 yline(-path.width/2, 'r--', 'Track Limit', 'LineWidth', 1.2);
 xlabel('Time (s)'); ylabel('Cross-track error (m)');
-title('Project 4 Week 2 - Cross-Track Error');
+title('Project 4 Individual – Cross-Track Error');
 grid on;
 
 % --- Elevation profile figure ---

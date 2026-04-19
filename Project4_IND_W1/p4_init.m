@@ -1,6 +1,6 @@
 %% p4_init.m
-% Project 4 Week 2 initialization
-% Combined lateral dynamics (P2) and longitudinal dynamics (P3)
+% Project 4 Individual – Week 1 initialization
+% Combined lateral dynamics (P2) and longitudinal dynamics (P3) with elevation
 
 clc;
 
@@ -35,7 +35,7 @@ carData.radius   = datCar.radius;
 carData.maxAlpha = datCar.maxAlpha;
 carData.vx_threshold1 = 0.1;
 
-% ====== Week 2 speed target ====== %
+% ====== Speed target ====== %
 % Start with a safer speed that is more likely to stay on track.
 carData.vxd_mph = 20;
 carData.vxd     = carData.vxd_mph * 0.44704;
@@ -74,7 +74,7 @@ fprintf('Max grade force       : %.1f N (%.1f%% of weight)\n', ...
 % Project requirement: total time of 60 minutes
 sim_stop_time = 3600;
 
-fprintf('Project 4 Week 2 Initialization Complete\n');
+fprintf('Project 4 Individual Week 1 Initialization Complete\n');
 fprintf('Vehicle mass          : %.0f kg\n', datCar.m);
 fprintf('Initial battery SOC   : %.0f%%\n', datBat.SOC_init*100);
 fprintf('Target speed          : %.1f m/s (%.1f mph)\n', carData.vxd, carData.vxd_mph);
